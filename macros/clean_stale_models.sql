@@ -1,4 +1,4 @@
-{% macro clean_stale_models(database=target.database, schema=target.schema, days=7, dry_run=False) %}
+{% macro clean_stale_models(database=target.database, schema=target.schema, days=7, dry_run=True) %}
     
     {% set get_drop_commands_query %}
         select
@@ -27,3 +27,6 @@
     {% endfor %}
     
 {% endmacro %} 
+
+
+--dbt run-operation clean_stale_models --args '{'dry_run' : 'False'}'
